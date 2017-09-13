@@ -790,3 +790,179 @@ def count_matches(s1, s2):
 =============================================
 +++++++++++++++++Nested Lists++++++++++++++++
 
+grades = [['Assignment 1', 80], ['Assignment 2', 90], ['Assignment 3', 70]]
+len(grades)
+3
+grades[0]
+	['Assignment 1', 80]
+grades[1]
+	['Assignment 2', 90]
+len(grade[0])
+	2
+
+Can do this with a "for" loop as well
+for item in grades:
+	print(item)
+['Assignment 1', 80]
+['Assignment 2', 90]
+['Assignment 3', 70]
+
+Can use multiple indexes to get specific Values
+grades[0][0]
+	'Assignment 1'
+grades[0][1]
+	80
+
+A function to calculate the average grade
+def calculate_average(asn_grades);
+	''' (list of list of [str, number]) -> float
+
+	Return the average of grades in asn_grades.
+
+	>>> calculate_average([['A1, 80'], ['A2', 90]])
+	85.0
+	'''
+
+	total = 0
+	for item in asn_grades:
+		total = total + item[1]
+	return total / len(asn_grades)
+
+numbers = [[1, 2], 3, [4, 5]]
+len(numbers)
+	3   #because each sublist is treated as a single element. Thus 2 lists and 1 int = 3.
+
+numbers[2][0] 	=	4
+numbers[1]		=	3
+numbers[0][1]	=	2
+
+=============================================
++++++++++++++++++Nested Loops++++++++++++++++
+
+for i in range(10, 13):
+	for j in range(1, 5):
+		print(i, j)
+
+10 1
+10 2
+10 3
+10 4
+11 1
+11 2
+11 3
+etc. thru 12 4
+
+grades = [[70, 75, 80],[70, 80, 90, 100],[80, 100]]
+english = grades[0] # this sets the first list to 'english'
+english				# this returns the value of the variable 'english'
+	[70, 75, 80]
+
+total = 0			# this loop would give the average grade of 'english'
+for mark in english:
+	total = total + mark
+	return total / len(english)
+
+def averages(grades):
+	''' (list of list of number) -> list of float
+	
+	Return a new list in which each item is the average of the grades in the inner list at the corresponding potition of grades.
+
+	>>> averages([[70, 75, 80],[70, 80, 90, 100],[80, 100]])
+	[75.0, 85.0, 90.0]
+	'''
+	averages = []
+	for grades_list in grades:
+		#calculate the average of grades and apped it to averages
+		total = 0
+		for i in grades_list:
+			total = total + i
+
+		averages.append(total / len(grades_list))
+
+	return averages
+
+
+=============================================
+++++++++++++++++Reading Files++++++++++++++++
+To open a file to read:
+open(filename, mode)
+	modes: 	'r' - open to read
+			'w' - open for writing (will delete any previous data)
+			'a' - open to append
+When opening a file, the full path must be given. So its best to assign a variable
+filename = '/home/david/Documents/filename.txt'
+open_file = open(filename, 'r')
+
+Once a file is open for reading, we can use the READLINE method
+open_file.readline() # will read 1 line of the file and return it 1 at a time
+
+This lets us use a 'while' loop to read each line automatically.
+open_file = open(filename.txt, 'r')
+line = open_file.readline()
+while line != '':
+	print(line, end='') # prints line, end='' removes extra <CR>
+	line = open_file.readline() # moves to next line in file & goes to top of loop
+
+To close the file, you MUST close the file.
+	open_file.close()
+
+If we want to only get the first stanza/paragraph we can
+filename = '/home/david/Documents/filename.txt'
+open_file = open(filename, 'r')
+line = open_file.readline()
+while line != '\n':	# prints each line til it finds one that only has \n
+	print(line, end='')
+	line = open_file.readline()
+
+If we want to read every line in a file, a "for" loop is easy.
+filename = '/home/david/Documents/filename.txt'
+open_file = open(filename, 'r')
+for line in open_file:
+	print(line, end='')
+
+Or if the file isnt large, can read it in a method call. This method reads the entire file & returns it as a single string including \n character.
+print(open_file.read())
+
+
+Can also use a readlines method, which returns a list of all the lines in the file. This way is useful as then we can use it to get an index of a specific line  	lines[0] or lines[4] etc.
+
+open_file.readlines()  # NOT the same as readline!!
+Like this:
+	open_file = open(filename, 'r')
+	lines = open_file.readlines()
+	for line in lines:
+		print(lines, end='')
+
+open_file.close()
+
+=============================================
+++++++++++++++++Writing Files++++++++++++++++
+open(filename, mode)
+the WRITE method is like print but does not append an extra newline character
+
+import tkinter.filedialog
+from_filename = tkinter.filedialog.askopenfilename() #prompts user for filename
+to_filename = tkinter.filedialog.asksaveasfilename() #prompts user for save filenam
+
+from_file = open(from_filename, 'r')
+contents = from_file.read()
+from_file.close()
+
+to_file = open(to_filename, 'w')
+to_file.write('Copy\n') #we have to add the newline as .write does not do it
+	5
+to_file.write(contents)
+	540
+to_file.close()
+
+=================================================
+++++++++++++++++Develop a Program++++++++++++++++
+
+
+
+***********************************************
+******************* WEEK 7 ********************
+***********************************************
+
+=============================================
+++++++++++++For Loops Over Indices+++++++++++
