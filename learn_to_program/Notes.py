@@ -965,4 +965,178 @@ to_file.close()
 ***********************************************
 
 =============================================
-++++++++++++For Loops Over Indices+++++++++++
+++++++++++++++++++++Tuples+++++++++++++++++++
+Lists are mutable sequences. Lists use square brackets.
+Tuples are immutible sequences. Tuples use parenthesis.
+
+Tuple are Like
+	tup = ('a', 3, 0.2) is like a list of list=['a', 3, 0.2]
+You can index Tuples
+tup[0]	=	'a'
+tup[1]	=	3
+tup[2]	=	0.2
+tup[-1]	=	0.2
+You can slice Tuples, which return a Tuple
+tup[:2]	=	('a', 3)
+tup[1:3]	(3, 0.2)
+Tuples only have count, and index methods.
+You can iterate of items in a Tuples
+	for item in tup:
+		print(item)
+a
+3
+0.2
+
+len(tup)
+3
+
+for i in range(len(tup)):
+	print(tup[i])
+a
+3
+0.2
+
+=============================================
+++++++++++++++++++Type dict++++++++++++++++++
+grades = [['A1', 80], ['A2', 70], ['A3', 90]] #a nested list
+grades = [0]
+	['A1', 80]
+grades[1][0]
+	'A2'
+
+dict (dictionary) uses key:value pairs. Keys MUST be unique.
+asn_to_grade = {'A1': 80, 'A2': 70, 'A3':90}
+asn_to_grade['A2']
+	70
+'A4' in asn_to_grade
+	False
+'A2' in asn_to_grade
+	True
+80 in asn_to_grade
+	False (80 is not a key, it is a value)
+
+Add a key:value pairs
+asn_to_grade['A4'] = 85
+len(asn_to_grade)
+	4
+asn_to_grade['A4'] = 90 (this changes the value of A4)
+	
+del asn_to_grade['A4']
+len(asn_to_grade)
+	3
+
+for assignment in asn_to_grade:
+	print(assignment)
+A1
+A3
+A2
+
+
+for assignment in asn_to_grade:
+	print(asn_to_grade[assignment])
+80
+90
+70
+
+for assignment in asn_to_grade:
+	print(assignment, asn_to_grade[assignment])
+A1 80
+A3 90
+A2 70
+
+A dictionary can be empty
+d = {}
+len(d)
+	0
+d = {'a': 2, 5 : 8} #can use str or int, etc
+dictionary are mutable
+dictionary is unordered
+
+Keys are immutable
+
+d[[1, 2]] = 'banana' will result in a TypeError
+d[(1, 2)] = 'banana' is acceptable because it is a tuple and tuples are immutable
+
+
+=============================================
++++++++++++++++Inverting a dict++++++++++++++
+Create a dictionary as such
+fruit_to_color = {
+	'banana': 'yellow',
+	'cherry': 'red',
+	'orange': 'orange',
+	'pear': 'green',
+	'peach': 'orange',
+	'plug': 'purple',
+	'pomegranate': 'red',
+	'strawberry': 'red'}
+
+Dictionaries are not ordered
+fruit_to_color['banana']	=	'yellow'
+fruit_to_color['orange']	=	'orange'
+
+for fruit in fruit_to_color:
+	print(fruit, fruit_to_color[fruit])
+
+pomegranate red
+strawberry red
+peach orange
+cherry red
+etc
+
+#Invert fruit_to_color
+color_to_fruit = {}
+for fruit to fruit_to_color:
+	color = fruit_to_color[fruit]
+	# if color is not already a key in the accumulator, add color: [fruit] as an entry
+	if not (color in color_to_fruit):
+		color_to_fruit[color] = [fruit]
+ 	# otherwise, append fruit to the existing list
+ 	else:
+ 		color_to_fruit[color].append(fruit)
+#	color_to_fruit[color] = fruit
+
+color_to_fruit['orange']	=	['peach', 'orange']
+color_to_fruit['orange']['1']	=	'orange'
+color_to_fruit['red']		=	['pomegranate', 'strawberry', 'cherry']
+color_to_fruit['red'][-1]	=	'cherry'
+
+=============================================
++++++++++++++++Populating a dict++++++++++++++
+Read from a file and store it into a dictionary
+
+
+gradefile = open('/home/david/text_filename_here.txt')
+def read_grades(gradefiles):
+	''' (file open for reading) -> dict of {float: list of str}
+
+	Read the grades from gradefile and return a dictionary where each key is a grade and each value is the list of the ids of students who earned that grade.
+
+	Precondition: grade file starts with a header that contains no blank lines, then has a blank line, and then lines containing a student number and a grade.
+
+	'''
+
+	# skip over the header
+	line = gradefile.readline()
+	while line != '\n':
+		line = gradefile.readline()
+
+	# read the grades from file, accumulate them into dict.
+	grade_to_ids = {}
+	line = gradefile.readline()
+
+	while line != '':
+
+		student_id = line[:4]
+		grade = float(line[4:].strip())
+
+		if grade not in grade_to_ids:
+			grade_to_ids[grade] = [student_id]
+		else:
+			grade_to_ids[grade].append(student_id)
+
+		line = gradefile.readline()
+	return grade_to_ids
+
+	call the function to run it
+	read_grades(gradesfile)

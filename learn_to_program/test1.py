@@ -1,16 +1,25 @@
-def shift_left(L):
-    ''' (list) -> NoneType
-    Shift each item in L one position to the left and shift the first item to the last position.
-    Precondition: len(L) >= 1
-    '''
-    first_item = L[0]
-    for i in range(1, len(L)):
-        L[i - 1] = L[i]
-    L[-1] = first_item # takes original L[0] & puts it to end of list
+def get_negative_nonnegative_lists(L):
+    '''(list of list of int) -> tuple of (list of int, list of int)
 
-letters = ['a', 'b', 'c', 'd']
-numbers = [1, 2, 3, 4, 5]
-print(shift_left(letters))
-print(letters)
-print(shift_left(numbers))
-print(numbers)
+    Return a tuple where the first item is a list of the negative ints in the
+    inner lists of L and the second item is a list of the non-negative ints
+    in those inner lists.
+
+    Precondition: the number of rows in L is the same as the number of
+    columns.
+
+    >>> get_negative_nonnegative_lists([[-1,  3,  5], [2,  -4,  5], [4,  0,  8]])
+    ([-1, -4], [3, 5, 2, 5, 4, 0, 8])
+    '''
+
+    nonneg = []
+    neg = []
+    for row in range(len(L)):
+        for col in range(len(L)):
+
+            if L[row][col] < 0:
+                nonneg.append(L[row][col])
+            else:
+                neg.append(L[row][col])
+
+    return (neg, nonneg)
