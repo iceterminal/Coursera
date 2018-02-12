@@ -9,7 +9,7 @@ Try each of them in CodeSkulptor.
 	Hello
 	"Hello"
 	'Hello'
-	"Hello
+	"Hello"
 	"It's a beautiful day."
 
 2. Question 2
