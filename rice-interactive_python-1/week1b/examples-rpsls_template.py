@@ -14,7 +14,6 @@ import random
 # helper functions
 
 def name_to_number(name):
-    # delete the following pass statement and fill in your code below
     if name == 'rock':
         return 0
     elif name == 'Spock':
